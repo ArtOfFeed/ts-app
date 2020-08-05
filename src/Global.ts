@@ -41,26 +41,29 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 1000px;
+    width: 90%;
+    @media (min-width: 1024px) {
+      width: 1000px;
+    }
     margin: 0 auto;
 `;
 
 export const MainTitle = styled.h1`
     text-align: center;
-    font-size: 2.4rem;
-    margin: 1rem 0;
+    font-size: ${getRemsFromPixels(30)};
+    margin: ${getRemsFromPixels(10)} 0;
 `;
 
 export const Text = styled.span`
-    font-size: 1rem;
+    font-size: ${getRemsFromPixels(14)};
 `;
 
 export const ButtonManage = styled.span`
     background: ${rgba(globalConst.primary, 0.75)};
     color: ${globalConst.white};
-    padding: 0.5rem;
-    font-size: 0.8rem;
-    border-radius: 0.2rem;
+    padding: ${getRemsFromPixels(10)};
+    font-size: ${getRemsFromPixels(14)};
+    border-radius: ${getRemsFromPixels(3)};
     cursor: pointer;
     transition: background 0.3s ease;
     &:hover {

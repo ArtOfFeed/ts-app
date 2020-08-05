@@ -1,16 +1,16 @@
 import React from "react";
-import {IGuest} from "../../interfaces";
-import {Text, ButtonManage} from "../Global";
+import {PropsGuest} from "../../interfaces";
 import {Guest, Info} from "./styles";
+import {ButtonManage, Text} from "../../Global";
 
-const GuestItem: React.FC<IGuest> = ({id, name, status}) => {
+const GuestItem: React.FC<PropsGuest> = ({guest, onManage}) => {
     return (
-        <Guest status={status}>
+        <Guest status={guest.status}>
             <Info>
-                <Text>{name}</Text>
-                <Text>{status ? 'Yes' : 'No'}</Text>
+                <Text>{guest.name}</Text>
+                <Text>{guest.status ? 'Yes' : 'No'}</Text>
             </Info>
-            <ButtonManage>Manage</ButtonManage>
+            <ButtonManage onClick={() => onManage(guest)}>Manage</ButtonManage>
         </Guest>
     )
 };

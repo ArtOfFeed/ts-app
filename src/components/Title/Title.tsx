@@ -1,8 +1,8 @@
 import React from "react";
-import {IEvent} from "../../interfaces";
 import {SecondaryTitle} from "./styles";
+import { TitleProps } from "../../interfaces";
 
-const Title: React.FC<IEvent> = ({title}) => {
+const Title: React.FC<TitleProps> = ({title}) => {
     return (
         <SecondaryTitle>{title}</SecondaryTitle>
     )

@@ -1,30 +1,45 @@
 import React, {useEffect, useState} from "react";
 import Title from "../Title/Title";
 import GuestList from "../GuestList/GuestList";
-import {IEvent} from "../../interfaces";
+import {IEvent, IGuest, EventsProps} from "../../interfaces";
 import Dialog from "../Dialog/Dialog";
-
-type EventsProps = {
-    eventSoon: any[]
-}
+import { EventInner } from "./styles";
 
 const EventWrapper: React.FC<EventsProps> = ({eventSoon}) => {
     const [events, setEvents] = useState<IEvent[]>([]);
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState<IGuest | null>(null);
 
     useEffect(() => {
-        setEvents(events);
-    }, [events]);
+        setEvents(eventSoon);
+    }, [eventSoon]);
+
+    const manageHandle = (guest: IGuest) => {
+        setOpen(guest);
+    };
+
+    const changeStatusHandle = (acceptedStatus: boolean, member: IGuest) => {
+        // we can change 0 index on ID, if we will have multiple events
+        let arrGuests = events[0].guests.map((guest) => {
+            if (guest.id === member.id) {
+                guest.status = acceptedStatus;
+            }
+            return guest;
+        });
+        let newEvents = [...events];
+        newEvents[0].guests = arrGuests;
+        setEvents(newEvents);
+        setOpen(null);
+    };
 
     return (
         <>
-            {eventSoon.map((list) => (
-                <div key={list.title}>
-                    <Title title={list.title} />
-                    <GuestList guests={list.guests} />
-                </div>
+            {events.map(({title, guests}) => (
+                <EventInner key={title}>
+                    <Title title={title} />
+                    <GuestList guests={guests} onManage={manageHandle} />
+                </EventInner>
             ))}
-            {open && <Dialog />}
+            {open && <Dialog onChangeStatus={changeStatusHandle} guest={open} />}
 
         </>
     )

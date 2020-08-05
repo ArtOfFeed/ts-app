@@ -1,7 +1,7 @@
 import React from 'react';
 import EventWrapper from './components/EventWrapper/EventWrapper';
 import { list } from "./list";
-import {Container, MainTitle} from "./components/Global";
+import {Container, MainTitle} from "./Global";
 
 const App: React.FC = () => {
     return (

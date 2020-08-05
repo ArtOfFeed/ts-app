@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {getRemsFromPixels, globalConst, rgba} from "../Global";
+import {globalConst, rgba, getRemsFromPixels} from "../../Global";
 
 interface ActionPropsBtn {
     action?: string
@@ -17,7 +17,7 @@ export const Overlay = styled.div`
 
 export const DialogWrapper = styled.div`
     position: absolute;
-    width: ${getRemsFromPixels(400)};
+    width: 90%;
     background: ${globalConst.white};
     padding: ${getRemsFromPixels(30)};
     left: 50%;
@@ -26,6 +26,9 @@ export const DialogWrapper = styled.div`
     display: flex;
     flex-direction: column;
     transition: all 0.3s ease;
+    @media (min-width: 568px) {
+      width: ${getRemsFromPixels(400)};
+    }
 `;
 
 export const Line = styled.p`

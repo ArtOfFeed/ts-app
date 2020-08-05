@@ -1,15 +1,11 @@
 import React from "react";
-import {IGuest} from "../../interfaces";
+import {GuestProps} from "../../interfaces";
 import GuestItem from "../GuestItem/GuestItem";
 
-type GuestProps = {
-    guests: IGuest[]
-}
-
-const GuestList: React.FC<GuestProps> = ({guests}) => {
+const GuestList: React.FC<GuestProps> = ({guests, onManage}) => {
     return (
         <>
-            {guests.map((guest) => <GuestItem key={guest.id} id={guest.id} name={guest.name} status={guest.status} />)}
+            {guests.map((guest) => <GuestItem onManage={onManage} key={guest.id} guest={guest} />)}
         </>
     )
 };
